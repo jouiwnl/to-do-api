@@ -28,7 +28,7 @@ export class LaneService {
 
     async executeFindAll(): Promise<Lane[]> {
         const laneRepository = getRepository(Lane);
-        const lanes = await laneRepository.find();
+        const lanes = await laneRepository.find({ relations: ["cards"] });
 
         return lanes;
     }

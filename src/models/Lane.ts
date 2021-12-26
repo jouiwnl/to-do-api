@@ -14,7 +14,7 @@ export class Lane {
     @CreateDateColumn()
     created_at: Date;
 
-    @OneToMany(() => Card, () => Lane)
+    @OneToMany(() => Card, card => card.lane)
     cards: Card[];
     
     constructor() {

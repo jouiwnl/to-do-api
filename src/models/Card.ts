@@ -17,7 +17,7 @@ export class Card {
     @Column()
     lane_id: string;
 
-    @ManyToOne(() => Lane)
+    @ManyToOne(() => Lane, lane => lane.cards)
     @JoinColumn({ name: "lane_id" })
     lane: Lane;
 
