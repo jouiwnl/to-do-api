@@ -12,6 +12,9 @@ export class Card {
     name: string;
 
     @Column()
+    link: string;
+
+    @Column()
     description: string;
 
     @Column()
