@@ -17,7 +17,7 @@ export class Card {
     @Column()
     lane_id: string;
 
-    @ManyToOne(() => Lane, lane => lane.cards)
+    @ManyToOne(() => Lane, lane => lane.cards, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "lane_id" })
     lane: Lane;
 
