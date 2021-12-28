@@ -35,7 +35,7 @@ export class LaneService {
 
     async executeFindById({ id } : LaneRequestWithId): Promise<Lane | Error> {
         const laneRepository = getRepository(Lane);
-        const lane = await laneRepository.findOne({ id: id });
+        const lane = await laneRepository.findOne(id, {relations: ["cards"]});
 
         if (!lane) {
             return new Error(ERROR_MESSAGE)
