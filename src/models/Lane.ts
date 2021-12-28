@@ -11,9 +11,6 @@ export class Lane {
     @Column()
     name: string;
 
-    @CreateDateColumn()
-    created_at: Date;
-
     @OneToMany(() => Card, card => card.lane, { cascade: true })
     cards: Card[];
     

@@ -24,9 +24,6 @@ export class Card {
     @JoinColumn({ name: "lane_id" })
     lane: Lane;
 
-    @CreateDateColumn()
-    created_at: Date;
-
     constructor() {
         if(!this.id) {
             this.id = uuid();
