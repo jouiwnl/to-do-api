@@ -1,12 +1,16 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Lane } from './Lane';
+import { Status } from './Status';
 
 @Entity("cards")
 export class Card {
 
     @PrimaryColumn()
     id: string;
+
+    @Column()
+    status: string;
 
     @Column()
     name: string;

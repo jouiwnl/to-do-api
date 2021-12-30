@@ -1,5 +1,6 @@
 import { getRepository } from "typeorm";
 import { Card } from "../models/Card";
+import { Status } from "../models/Status";
 
 type CardRequestCreate = {
     name: string,
@@ -17,6 +18,7 @@ type CardUpdateRequest = {
     name: string,
     description: string,
     link: string,
+    status: string,
     lane_id: string;
 }
 
@@ -61,7 +63,7 @@ export class CardService {
         await cardRepository.delete(id);
     }
 
-    async executeUpdate({id, name, description, link, lane_id} : CardUpdateRequest): Promise<Error | Card> {
+    async executeUpdate({id, name, description, status, link, lane_id} : CardUpdateRequest): Promise<Error | Card> {
         const cardRepository = getRepository(Card);
         const cardForUpdate = await cardRepository.findOne({ id: id });
 
@@ -73,6 +75,7 @@ export class CardService {
         cardForUpdate.description = description ? description : cardForUpdate.description;
         cardForUpdate.lane_id = lane_id ? lane_id : cardForUpdate.lane_id;
         cardForUpdate.link = link ? link : cardForUpdate.link;
+        cardForUpdate.status = status ? status : cardForUpdate.status;
 
         await cardRepository.save(cardForUpdate);
 
