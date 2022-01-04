@@ -1,12 +1,12 @@
 import { getRepository } from "typeorm";
 import { Card } from "../models/Card";
-import { Status } from "../models/Status";
 
 type CardRequestCreate = {
     name: string,
     description: string,
     link: string,
     lane_id: string;
+    dtevento: string;
 }
 
 type CardRequestWithId = {
@@ -20,13 +20,14 @@ type CardUpdateRequest = {
     link: string,
     status: string,
     lane_id: string;
+    dtevento: string;
 }
 
 const ERROR_MESSAGE = "Esse card não existe";
 
 export class CardService {
 
-    async executeRegister({ name, description, link, lane_id } : CardRequestCreate) : Promise<Card> {
+    async executeRegister({ name, description, link, lane_id, dtevento } : CardRequestCreate) : Promise<Card> {
         const cardRepository = getRepository(Card);
         const card = await cardRepository.create({ name, description, link, lane_id })
         await cardRepository.save(card);
@@ -63,10 +64,10 @@ export class CardService {
         await cardRepository.delete(id);
     }
 
-    async executeUpdate({id, name, description, status, link, lane_id} : CardUpdateRequest): Promise<Error | Card> {
+    async executeUpdate({id, name, description, status, link, lane_id, dtevento} : CardUpdateRequest): Promise<Error | Card> {
         const cardRepository = getRepository(Card);
         const cardForUpdate = await cardRepository.findOne({ id: id });
-
+        
         if (!cardForUpdate) {
             return new Error(ERROR_MESSAGE);
         }
@@ -76,6 +77,7 @@ export class CardService {
         cardForUpdate.lane_id = lane_id ? lane_id : cardForUpdate.lane_id;
         cardForUpdate.link = link ? link : cardForUpdate.link;
         cardForUpdate.status = status ? status : cardForUpdate.status;
+        cardForUpdate.dtevento = dtevento ? dtevento : cardForUpdate.dtevento;
 
         await cardRepository.save(cardForUpdate);
 

@@ -1,7 +1,6 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Lane } from './Lane';
-import { Status } from './Status';
 
 @Entity("cards")
 export class Card {
@@ -23,6 +22,9 @@ export class Card {
 
     @Column()
     lane_id: string;
+
+    @Column()
+    dtevento: string;
 
     @ManyToOne(() => Lane, lane => lane.cards, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "lane_id" })
