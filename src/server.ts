@@ -11,4 +11,4 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(process.env.PORT || 3335, () => { console.log('Servidor rodando!') })
+app.listen(443, () => { console.log('Servidor rodando!') })
