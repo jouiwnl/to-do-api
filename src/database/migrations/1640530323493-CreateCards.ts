@@ -14,7 +14,7 @@ export class CreateCards1640530323493 implements MigrationInterface {
                     },
                     {
                         name: "name",
-                        type: "varchar"
+                        type: "varchar",
                     },
                     {
                         name: "description",
@@ -23,6 +23,15 @@ export class CreateCards1640530323493 implements MigrationInterface {
                     {
                         name: "lane_id",
                         type: "uuid"
+                    },
+                    {
+                        name: "dtevento",
+                        type: "varchar"
+                    },
+                    {
+                        name: "status",
+                        type: "varchar",
+                        default: "0"
                     },
                     {
                         name: "created_at",
