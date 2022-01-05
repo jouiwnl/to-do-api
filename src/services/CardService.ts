@@ -29,7 +29,7 @@ export class CardService {
 
     async executeRegister({ name, description, link, lane_id, dtevento } : CardRequestCreate) : Promise<Card> {
         const cardRepository = getRepository(Card);
-        const card = await cardRepository.create({ name, description, link, lane_id })
+        const card = await cardRepository.create({ name, description, link, lane_id, dtevento })
         await cardRepository.save(card);
 
         return card;
