@@ -26,6 +26,9 @@ export class Card {
     @Column()
     dtevento: string;
 
+    @Column()
+    dtconclusao: string;
+
     @ManyToOne(() => Lane, lane => lane.cards, { onDelete: 'CASCADE' })
     @JoinColumn({ name: "lane_id" })
     lane: Lane;

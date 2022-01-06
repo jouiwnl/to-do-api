@@ -21,6 +21,7 @@ type CardUpdateRequest = {
     status: string,
     lane_id: string;
     dtevento: string;
+    dtconclusao: string;
 }
 
 const ERROR_MESSAGE = "Esse card não existe";
@@ -64,7 +65,7 @@ export class CardService {
         await cardRepository.delete(id);
     }
 
-    async executeUpdate({id, name, description, status, link, lane_id, dtevento} : CardUpdateRequest): Promise<Error | Card> {
+    async executeUpdate({id, name, description, status, link, lane_id, dtevento, dtconclusao} : CardUpdateRequest): Promise<Error | Card> {
         const cardRepository = getRepository(Card);
         const cardForUpdate = await cardRepository.findOne({ id: id });
         
@@ -78,6 +79,7 @@ export class CardService {
         cardForUpdate.link = link ? link : cardForUpdate.link;
         cardForUpdate.status = status ? status : cardForUpdate.status;
         cardForUpdate.dtevento = dtevento ? dtevento : cardForUpdate.dtevento;
+        cardForUpdate.dtconclusao = dtconclusao ? dtconclusao : cardForUpdate.dtconclusao;
 
         await cardRepository.save(cardForUpdate);
 

@@ -46,9 +46,9 @@ export class CardController {
     async handleUpdate(request: Request, response: Response) {
 
         const { id } = request.params;
-        const { name, description, link, status, lane_id, dtevento } = request.body;
+        const { name, description, link, status, lane_id, dtevento, dtconclusao } = request.body;
 
-        const result = await cardService.executeUpdate({ id, name, description, link, status, lane_id, dtevento });
+        const result = await cardService.executeUpdate({ id, name, description, link, status, lane_id, dtevento, dtconclusao });
 
         if (result instanceof Error) {
             return response.status(400).json(result.message);
